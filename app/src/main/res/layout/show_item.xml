@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="show"
+            type="com.example.domain.model.Show" />
+    </data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+
+    <ImageView
+        android:id="@+id/cover"
+        android:layout_width="100dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@{show.imageUrl}"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text="@{show.name}"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cover"
+        tools:text="Film"/>
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:singleLine="true"
+        android:text="@{show.genres}"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cover"
+        tools:text="Horror, komedia"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.oketestapp.viewModel.SearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="721dp"
+        tools:context=".activity.SearchActivity">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_search"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="40dp"
+            app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/ic_action_search">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="49dp"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text="@={viewModel.searchObservableField}"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_results"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_search" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
