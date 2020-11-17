@@ -2,10 +2,8 @@ package com.example.oketestapp.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.Observable
-import androidx.databinding.ObservableField
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.oketestapp.R
@@ -29,6 +27,8 @@ class SearchActivity : AppCompatActivity() {
         initDataBinding()
 
         initShowsList()
+
+        initErrorObserver()
     }
 
     private fun initDataBinding(){
@@ -40,7 +40,7 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-    private fun initShowsList(){
+    private fun initShowsList() {
         binding?.rvResults?.apply {
             adapter = showsListAdapter
             layoutManager = listLayoutManager
@@ -50,4 +50,34 @@ class SearchActivity : AppCompatActivity() {
             showsListAdapter.submitList(it)
         })
     }
+
+    private fun initErrorObserver(){
+        searchViewModel.getErrorsLiveData().observe(this, Observer {
+            showError(it)
+        })
+    }
+
+    private fun showError(throwable: Throwable?){
+        AlertDialog.Builder(this)
+            .apply {
+                title = "Error"
+                setMessage(throwable?.message)
+                setCancelable(false)
+                setNeutralButton("Ok", { dialogInterface, i ->  dialogInterface.dismiss()})
+            }.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        searchViewModel.clearDisposables()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        searchViewModel.clearDisposables()
+    }
+
+
 }

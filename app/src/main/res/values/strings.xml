@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Oke Test App</string>
+    <string name="search_instruction">Enter a query above. It should contain at least 3 characters.</string>
 </resources>
